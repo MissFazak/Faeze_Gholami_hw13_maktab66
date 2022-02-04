@@ -1,0 +1,28 @@
+.main{
+    width: 30%;
+    margin: auto;
+}
+.toggles{
+    cursor: pointer;
+}
+
+.one{
+    background-color: yellow;
+    padding: 10px;
+    margin: 0;
+}
+.two{
+    background-color: crimson;
+    padding: 10px;
+    margin: 0;
+}
+
+.three{
+    background-color: darkorange;
+    padding: 10px;
+    margin: 0;
+}
+.inner{
+    padding: 15px;
+    display: none;
+}
