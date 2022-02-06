@@ -1,5 +1,4 @@
 let counter = [];
-let counting = 0;
 
 function count() {
   counter.push("");
@@ -17,7 +16,6 @@ function checkConfrimed() {
 }
 
 function add() {
-  counting++;
   $("tbody").prepend(`<tr class="thisRow">
   <th scope="row">
     <button class="btn text-white m-1 p-2 deleteR" style="background-color: #dc3545">
@@ -36,19 +34,19 @@ function add() {
   <td class="radios">
     <div class="d-flex">
         <div class="form-c check mx-2">
-            <input class="form-check-input new" type="radio" disabled name="input${counting}">
+            <input class="form-check-input new" type="radio" disabled name="input${counter.length}">
             <label class="form-check-label" for="flexRadioDefault1">
               New
             </label>
           </div>
           <div class="form-check mx-3">
-            <input class="form-check-input new" type="radio" disabled name="input${counting}">
+            <input class="form-check-input new" type="radio" disabled name="input${counter.length}">
             <label class="form-check-label" for="flexRadioDefault2">
               In Progress
             </label>
           </div>
           <div class="form-check mx-3">
-            <input class="form-check-input confrimed" type="radio" disabled name="input${counting}" value='confrimed'>
+            <input class="form-check-input confrimed" type="radio" disabled name="input${counter.length}" value='confrimed'>
             <label class="form-check-label" for="flexRadioDefault2">
                 Confirmed
             </label>
@@ -60,7 +58,7 @@ function add() {
     $(":radio").removeAttr("disabled");
   });
   count();
-  checkConfrimed()
+  checkConfrimed();
 }
 
 $("#myTable").on("click", ".deleteR", function () {
@@ -70,6 +68,13 @@ $("#myTable").on("click", ".deleteR", function () {
 
 $("#myTable").on("click", ".cloneR", function () {
   $(this).closest(".thisRow").clone().insertAfter($(this).closest(".thisRow"));
+  $(this)
+    .closest(".thisRow")
+    .children(".radios")
+    .children("div")
+    .children("div")
+    .children(".form-check-input")
+    .attr("name", `inputClone${counter.length}`);
   count();
 });
 
@@ -80,7 +85,7 @@ $("#myTable").on("click", ".confrimed", function (e) {
     check.find(inputs)[0].disabled = true;
     check.find(inputs)[1].disabled = true;
   }
-  checkConfrimed()
+  checkConfrimed();
 });
 
 $("#myTable").on("click", ".new", function (e) {
@@ -90,5 +95,5 @@ $("#myTable").on("click", ".new", function (e) {
     check.find(inputs)[0].disabled = false;
     check.find(inputs)[1].disabled = false;
   }
-  checkConfrimed()
+  checkConfrimed();
 });
